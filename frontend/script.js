@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${cliente.nome}</td>
                 <td>${cliente.email}</td>
                 <td><button class="editar" data-id="${cliente.id}">Editar</button></td>
+                <td><button class="excluir" data-id="${cliente.id}">Excluir</button></td>
             `;
             clientesTable.appendChild(row);
         });
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Erro ao adicionar cliente:', error));
     });
     
-    // Event listener para o botão de editar
+    // Event listener para os botões de editar e excluir
     clientesTable.addEventListener('click', event => {
         const target = event.target;
         if (target.classList.contains('editar')) {
@@ -68,6 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (novoNome !== null && novoEmail !== null) {
                     editarCliente(id, novoNome, novoEmail);
                 }
+            }
+        } else if (target.classList.contains('excluir')) {
+            const id = parseInt(target.getAttribute('data-id'));
+            if (confirm('Tem certeza que deseja excluir este cliente?')) {
+                excluirCliente(id);
             }
         }
     });
@@ -86,6 +92,21 @@ document.addEventListener('DOMContentLoaded', () => {
             carregarClientes();
         })
         .catch(error => console.error('Erro ao editar cliente:', error));
+    }
+
+    // Função para excluir um cliente
+    function excluirCliente(id) {
+        fetch(`http://localhost:3000/clientes/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(() => {
+            carregarClientes();
+        })
+        .catch(error => console.error('Erro ao excluir cliente:', error));
     }
     
     // Carregar a lista de clientes ao carregar a página
