@@ -24,13 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     const cliente = await response.json();
                     const clienteRow = document.querySelector(`tr[data-cliente-id="${cliente._id}"]`);
-                    clienteRow.innerHTML = `
-                        <td>${cliente._id}</td>
-                        <td>${cliente.nome}</td>
-                        <td>${cliente.email}</td>
-                        <td><button class="edit" data-cliente-id="${cliente._id}">Editar</button></td>
-                        <td><button class="delete" data-cliente-id="${cliente._id}">Excluir</button></td>
-                    `;
+                    // Remove a linha antiga e cria uma nova com os listeners corretos
+                    clienteRow.remove();
+                    adicionarClienteNaLista(cliente);
                     clienteForm.reset();
                     clienteForm.removeAttribute('data-cliente-id');
                 } else {
