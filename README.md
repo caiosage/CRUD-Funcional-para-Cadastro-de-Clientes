@@ -27,3 +27,7 @@ Toda vez que uma nova alteração de código é enviada para o GitHub (via `push
 4. Se a aplicação passar em todos os testes, o commit é aprovado com sucesso (✅). Se algo quebrar, a automação acusa o erro e protege o projeto principal.
 
 Essa arquitetura garante que nenhuma atualização quebre as funcionalidades existentes!
+
+## Exemplo
+
+<img width="2531" height="896" alt="image" src="https://github.com/user-attachments/assets/c608e24d-f81d-4023-b82d-7ae6cc39256d" />
