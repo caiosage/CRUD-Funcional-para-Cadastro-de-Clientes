@@ -1,4 +1,4 @@
-name: Cypress E2E Tests
+name: Cypress & Newman E2E Tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main", "master" ]
 
 jobs:
-  cypress-run:
+  test-suite:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -16,15 +16,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          # Mudamos para a 18.16.0 para evitar o conflito de depreciação do ESM loader
           node-version: 18.16.0
 
-      # A Action oficial instala as dependências do Linux e gerencia os servidores
+      - name: Instalar dependencias do projeto
+        run: npm install
+
+      # Sobe a API na porta 3000, roda a collection do Postman com o Environment e derruba a API
+      - name: Rodar Testes de API (Postman/Newman)
+        run: |
+          npm install -g newman
+          npx start-server-and-test start:backend http://localhost:3000 "newman run postman/Impacta.postman_collection.json -e 'postman/Projeto Impacta.postman_environment.json'"
+
+      # O Cypress assume daqui para testar o Frontend + API juntos
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
           build: npm run build --if-present
           start: npm run start:backend, npm run start:frontend
-          # Aguarda o servidor do frontend responder para liberar os testes
           wait-on: 'http://localhost:5500'
           command: npm run cypress:run

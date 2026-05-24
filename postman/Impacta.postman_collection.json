@@ -1,0 +1,322 @@
+{
+  "info": {
+    "_postman_id": "abbbf8ec-c15b-423c-9c88-ff68ae97bcc2",
+    "name": "Impacta",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "11643897"
+  },
+  "item": [
+    {
+      "name": "Cadastro Clientes",
+      "item": [
+        {
+          "name": "2XX",
+          "item": [
+            {
+              "name": "201 - Cadastro de cliente com sucesso",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nome\": \"Caio Lima Teste - Projeto Impacta\",\r\n    \"email\": \"caio@impacta.com.br\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{URL_LOCAL}}/clientes",
+                  "host": [
+                    "{{URL_LOCAL}}"
+                  ],
+                  "path": [
+                    "clientes"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "200 - Consulta de clientes com sucesso",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{URL_LOCAL}}/clientes",
+                  "host": [
+                    "{{URL_LOCAL}}"
+                  ],
+                  "path": [
+                    "clientes"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "200 - Consulta por ID de cliente com sucesso",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{URL_LOCAL}}/clientes/:id",
+                  "host": [
+                    "{{URL_LOCAL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "4XX",
+          "item": [
+            {
+              "name": "404 - Cliente não encontrado",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{URL_LOCAL}}/clientes/:id",
+                  "host": [
+                    "{{URL_LOCAL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "3"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Edição de Clientes",
+      "item": [
+        {
+          "name": "2XX",
+          "item": [
+            {
+              "name": "200 - Edição de cliente com sucesso",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "    {\r\n        \"id\": 1,\r\n        \"nome\": \"Caio Lima\",\r\n        \"email\": \"caio@caio.com.br\"\r\n    }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{URL_LOCAL}}/clientes/:id",
+                  "host": [
+                    "{{URL_LOCAL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "4XX",
+          "item": [
+            {
+              "name": "404 - Cliente não encontrado",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "    pm.response.to.have.status(404);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response time is less than 200ms\", function () {\r",
+                      "    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "    {\r\n        \"id\": 666,\r\n        \"nome\": \"Caio Lima\",\r\n        \"email\": \"caio@caio.com.br\"\r\n    }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{URL_LOCAL}}/clientes/:id",
+                  "host": [
+                    "{{URL_LOCAL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "666"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exclusão de Clientes",
+      "item": [
+        {
+          "name": "200 - Exclusão de cliente com sucesso",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 2,\r\n    \"nome\": \"Caio\",\r\n    \"email\": \"caiolimaferreira@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/clientes/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "clientes",
+                "3"
+              ]
+            },
+            "description": "Generated from cURL: curl 'http://localhost:3000/clientes/1' \\\r\n  -X 'DELETE' \\\r\n  -H 'Accept: */*' \\\r\n  -H 'Accept-Language: pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'DNT: 1' \\\r\n  -H 'Origin: http://127.0.0.1:5500' \\\r\n  -H 'Referer: http://127.0.0.1:5500/' \\\r\n  -H 'Sec-Fetch-Dest: empty' \\\r\n  -H 'Sec-Fetch-Mode: cors' \\\r\n  -H 'Sec-Fetch-Site: cross-site' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36' \\\r\n  -H 'sec-ch-ua: \"Chromium\";v=\"148\", \"Google Chrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"'"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
