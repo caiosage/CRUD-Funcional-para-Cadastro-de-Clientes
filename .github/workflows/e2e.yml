@@ -16,7 +16,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          # Mudamos para a 18.16.0 para evitar o conflito de depreciação do ESM loader
+          node-version: 18.16.0
 
       # A Action oficial instala as dependências do Linux e gerencia os servidores
       - name: Run Cypress Tests
