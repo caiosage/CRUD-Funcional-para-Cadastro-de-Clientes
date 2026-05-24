@@ -17,10 +17,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Run Cypress Tests (CI)
-        run: npm run teste:ci
+      # A Action oficial instala tudo e gerencia o ciclo de vida dos servidores de forma isolada
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build --if-present
+          start: npm run start:backend, npm run start:frontend
+          wait-on: 'http://localhost:3000, http://localhost:5500'
+          command: npm run cypress:run
