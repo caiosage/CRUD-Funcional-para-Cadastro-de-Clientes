@@ -29,5 +29,6 @@ Toda vez que uma nova alteração de código é enviada para o GitHub (via `push
 Essa arquitetura garante que nenhuma atualização quebre as funcionalidades existentes!
 
 ## Exemplo
+<img width="2456" height="964" alt="image" src="https://github.com/user-attachments/assets/de26a974-4394-4a7a-9a45-611547a97ef4" />
 
 <img width="2531" height="896" alt="image" src="https://github.com/user-attachments/assets/c608e24d-f81d-4023-b82d-7ae6cc39256d" />
