@@ -21,11 +21,11 @@ jobs:
       - name: Instalar dependencias do projeto
         run: npm install
 
-      # Sobe a API na porta 3000, roda a collection do Postman com o Environment e derruba a API
+# Sobe a API, valida a rota /clientes, roda o Newman e derruba a API
       - name: Rodar Testes de API (Postman/Newman)
         run: |
           npm install -g newman
-          npx start-server-and-test start:backend http://localhost:3000 "newman run postman/Impacta.postman_collection.json -e 'postman/Projeto Impacta.postman_environment.json'"
+          npx start-server-and-test start:backend http://localhost:3000/clientes "newman run postman/Impacta.postman_collection.json -e 'postman/Projeto Impacta.postman_environment.json'"
 
       # O Cypress assume daqui para testar o Frontend + API juntos
       - name: Run Cypress Tests
