@@ -61,7 +61,7 @@ newman run postman/Impacta.postman_collection.json -e 'postman/Projeto Impacta.p
 ### 💻 Executando os Testes de Interface (Cypress)
 ```bash
 # Para abrir o modo interativo (com interface visual)
-npm run cypress:open
+npx cypress open
 
 # Para rodar rapidamente em segundo plano (Headless)
 npm run cypress:run
