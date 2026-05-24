@@ -2,7 +2,7 @@ describe('CRUD de Clientes - Testes de Ponta a Ponta', () => {
 
     // Visita a página uma única vez antes de começar o fluxo
     before(() => {
-       cy.visit('http://127.0.0.1:5500/index.html');
+       cy.visit('/index.html');
     });
 
     it('Deve exibir os componentes e executar o fluxo completo de CRUD', () => {
